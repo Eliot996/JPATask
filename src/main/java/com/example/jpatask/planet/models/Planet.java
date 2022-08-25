@@ -1,6 +1,7 @@
 package com.example.jpatask.planet.models;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "planets")
@@ -33,6 +34,9 @@ public class Planet {
 
     @ManyToOne
     private PlanetType type;
+
+    @ManyToMany(targetEntity = PlanetType.class)
+    private Set planetTypeSet;
 
     public Planet() {
     }
