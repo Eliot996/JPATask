@@ -21,4 +21,20 @@ public class PlanetType {
     public Long getId() {
         return id;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Set getPlanetSet() {
+        return planetSet;
+    }
+
+    public void setPlanetSet(Set planetSet) {
+        this.planetSet = planetSet;
+    }
 }
