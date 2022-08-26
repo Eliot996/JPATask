@@ -1,11 +1,19 @@
 package com.example.jpatask.planet.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.sun.istack.NotNull;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "planets")
 public class Planet {
@@ -13,6 +21,7 @@ public class Planet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private String name;
     private long mass;
     private int diameter;
@@ -35,197 +44,20 @@ public class Planet {
     private boolean isRingSystem;
     private boolean hasGlobalMagneticField;
 
-    @ManyToOne
-    private PlanetType type;
-
     @JsonBackReference
     @ManyToMany(mappedBy = "planets")
     private List<PlanetType> planetTypes = new ArrayList<>();
 
-    public Planet() {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Planet planet = (Planet) o;
+        return getMass() == planet.getMass() && getDiameter() == planet.getDiameter() && getDensity() == planet.getDensity() && Double.compare(planet.getGravity(), getGravity()) == 0 && Double.compare(planet.getEscapeVelocity(), getEscapeVelocity()) == 0 && Double.compare(planet.getRotationPeriod(), getRotationPeriod()) == 0 && Double.compare(planet.getLengthOfDay(), getLengthOfDay()) == 0 && Double.compare(planet.getDistanceFromSun(), getDistanceFromSun()) == 0 && Double.compare(planet.getPerihelion(), getPerihelion()) == 0 && Double.compare(planet.getAphelion(), getAphelion()) == 0 && Double.compare(planet.getOrbitalPeriod(), getOrbitalPeriod()) == 0 && Double.compare(planet.getOrbitalVelocity(), getOrbitalVelocity()) == 0 && Double.compare(planet.getOrbitalInclination(), getOrbitalInclination()) == 0 && Double.compare(planet.getOrbitalEccentricity(), getOrbitalEccentricity()) == 0 && Double.compare(planet.getObliquityToOrbit(), getObliquityToOrbit()) == 0 && Double.compare(planet.getMeanTemperature(), getMeanTemperature()) == 0 && Double.compare(planet.getSurfacePressure(), getSurfacePressure()) == 0 && getNumberOfMoons() == planet.getNumberOfMoons() && isRingSystem() == planet.isRingSystem() && isHasGlobalMagneticField() == planet.isHasGlobalMagneticField() && getId().equals(planet.getId()) && getName().equals(planet.getName()) && Objects.equals(getPlanetTypes(), planet.getPlanetTypes());
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public PlanetType getType() {
-        return type;
-    }
-
-    public void setType(PlanetType type) {
-        this.type = type;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public long getMass() {
-        return mass;
-    }
-
-    public void setMass(long mass) {
-        this.mass = mass;
-    }
-
-    public int getDiameter() {
-        return diameter;
-    }
-
-    public void setDiameter(int diameter) {
-        this.diameter = diameter;
-    }
-
-    public int getDensity() {
-        return density;
-    }
-
-    public void setDensity(int density) {
-        this.density = density;
-    }
-
-    public double getGravity() {
-        return gravity;
-    }
-
-    public void setGravity(double gravity) {
-        this.gravity = gravity;
-    }
-
-    public double getEscapeVelocity() {
-        return escapeVelocity;
-    }
-
-    public void setEscapeVelocity(double escapeVelocity) {
-        this.escapeVelocity = escapeVelocity;
-    }
-
-    public double getRotationPeriod() {
-        return rotationPeriod;
-    }
-
-    public void setRotationPeriod(double rotationPeriod) {
-        this.rotationPeriod = rotationPeriod;
-    }
-
-    public double getLengthOfDay() {
-        return lengthOfDay;
-    }
-
-    public void setLengthOfDay(double lengthOfDay) {
-        this.lengthOfDay = lengthOfDay;
-    }
-
-    public double getDistanceFromSun() {
-        return distanceFromSun;
-    }
-
-    public void setDistanceFromSun(double distanceFromSun) {
-        this.distanceFromSun = distanceFromSun;
-    }
-
-    public double getPerihelion() {
-        return perihelion;
-    }
-
-    public void setPerihelion(double perihelion) {
-        this.perihelion = perihelion;
-    }
-
-    public double getAphelion() {
-        return aphelion;
-    }
-
-    public void setAphelion(double aphelion) {
-        this.aphelion = aphelion;
-    }
-
-    public double getOrbitalPeriod() {
-        return orbitalPeriod;
-    }
-
-    public void setOrbitalPeriod(double orbitalPeriod) {
-        this.orbitalPeriod = orbitalPeriod;
-    }
-
-    public double getOrbitalVelocity() {
-        return orbitalVelocity;
-    }
-
-    public void setOrbitalVelocity(double orbitalVelocity) {
-        this.orbitalVelocity = orbitalVelocity;
-    }
-
-    public double getOrbitalInclination() {
-        return orbitalInclination;
-    }
-
-    public void setOrbitalInclination(double orbitalInclination) {
-        this.orbitalInclination = orbitalInclination;
-    }
-
-    public double getOrbitalEccentricity() {
-        return orbitalEccentricity;
-    }
-
-    public void setOrbitalEccentricity(double orbitalEccentricity) {
-        this.orbitalEccentricity = orbitalEccentricity;
-    }
-
-    public double getObliquityToOrbit() {
-        return obliquityToOrbit;
-    }
-
-    public void setObliquityToOrbit(double obliquityToOrbit) {
-        this.obliquityToOrbit = obliquityToOrbit;
-    }
-
-    public double getMeanTemperature() {
-        return meanTemperature;
-    }
-
-    public void setMeanTemperature(double meanTemperature) {
-        this.meanTemperature = meanTemperature;
-    }
-
-    public double getSurfacePressure() {
-        return surfacePressure;
-    }
-
-    public void setSurfacePressure(double surfacePressure) {
-        this.surfacePressure = surfacePressure;
-    }
-
-    public int getNumberOfMoons() {
-        return numberOfMoons;
-    }
-
-    public void setNumberOfMoons(int numberOfMoons) {
-        this.numberOfMoons = numberOfMoons;
-    }
-
-    public boolean isRingSystem() {
-        return isRingSystem;
-    }
-
-    public void setRingSystem(boolean ringSystem) {
-        isRingSystem = ringSystem;
-    }
-
-    public boolean isHasGlobalMagneticField() {
-        return hasGlobalMagneticField;
-    }
-
-    public void setHasGlobalMagneticField(boolean hasGlobalMagneticField) {
-        this.hasGlobalMagneticField = hasGlobalMagneticField;
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getMass(), getDiameter(), getDensity(), getGravity(), getEscapeVelocity(), getRotationPeriod(), getLengthOfDay(), getDistanceFromSun(), getPerihelion(), getAphelion(), getOrbitalPeriod(), getOrbitalVelocity(), getOrbitalInclination(), getOrbitalEccentricity(), getObliquityToOrbit(), getMeanTemperature(), getSurfacePressure(), getNumberOfMoons(), isRingSystem(), isHasGlobalMagneticField(), getPlanetTypes());
     }
 }
