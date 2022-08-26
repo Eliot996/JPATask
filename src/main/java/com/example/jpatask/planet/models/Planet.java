@@ -1,7 +1,10 @@
 package com.example.jpatask.planet.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "planets")
@@ -35,8 +38,9 @@ public class Planet {
     @ManyToOne
     private PlanetType type;
 
-    @ManyToMany(targetEntity = PlanetType.class)
-    private Set planetTypeSet;
+    @JsonBackReference
+    @ManyToMany(mappedBy = "planets")
+    private List<PlanetType> planetTypes = new ArrayList<>();
 
     public Planet() {
     }

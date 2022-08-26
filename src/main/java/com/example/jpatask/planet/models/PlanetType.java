@@ -1,8 +1,17 @@
 package com.example.jpatask.planet.models;
 
-import javax.persistence.*;
-import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "planetTypes")
 public class PlanetType {
@@ -11,30 +20,14 @@ public class PlanetType {
     private Long id;
     private String type;
 
-    @ManyToMany(targetEntity = Planet.class)
-    private Set planetSet;
+    @JsonManagedReference
+    @ManyToMany(cascade = {CascadeType.MERGE})
+    @JoinTable(name = "planet_types_planets",
+            joinColumns = @JoinColumn(name = "planet_type_id_id"),
+            inverseJoinColumns = @JoinColumn(name = "planet_id"))
+    private List<Planet> planets = new ArrayList<>();
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
+    public PlanetType(String type) {
         this.type = type;
-    }
-
-    public Set getPlanetSet() {
-        return planetSet;
-    }
-
-    public void setPlanetSet(Set planetSet) {
-        this.planetSet = planetSet;
     }
 }
