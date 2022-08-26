@@ -48,6 +48,37 @@ public class Planet {
     @ManyToMany(mappedBy = "planets")
     private List<PlanetType> planetTypes = new ArrayList<>();
 
+    public Planet(String name, long mass, int diameter, int density, double gravity,
+                  double escapeVelocity, double rotationPeriod, double lengthOfDay,
+                  double distanceFromSun, double perihelion, double aphelion, double orbitalPeriod,
+                  double orbitalVelocity, double orbitalInclination, double orbitalEccentricity,
+                  double obliquityToOrbit, double meanTemperature, double surfacePressure,
+                  int numberOfMoons, boolean isRingSystem, boolean hasGlobalMagneticField,
+                  List<PlanetType> planetTypes) {
+        this.name = name;
+        this.mass = mass;
+        this.diameter = diameter;
+        this.density = density;
+        this.gravity = gravity;
+        this.escapeVelocity = escapeVelocity;
+        this.rotationPeriod = rotationPeriod;
+        this.lengthOfDay = lengthOfDay;
+        this.distanceFromSun = distanceFromSun;
+        this.perihelion = perihelion;
+        this.aphelion = aphelion;
+        this.orbitalPeriod = orbitalPeriod;
+        this.orbitalVelocity = orbitalVelocity;
+        this.orbitalInclination = orbitalInclination;
+        this.orbitalEccentricity = orbitalEccentricity;
+        this.obliquityToOrbit = obliquityToOrbit;
+        this.meanTemperature = meanTemperature;
+        this.surfacePressure = surfacePressure;
+        this.numberOfMoons = numberOfMoons;
+        this.isRingSystem = isRingSystem;
+        this.hasGlobalMagneticField = hasGlobalMagneticField;
+        this.planetTypes = planetTypes;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
