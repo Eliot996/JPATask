@@ -2,6 +2,7 @@ package com.example.jpatask;
 
 import com.example.jpatask.customer.models.Customer;
 import com.example.jpatask.customer.repository.CustomerRepository;
+import com.example.jpatask.planet.models.PlanetType;
 import com.example.jpatask.planet.repository.PlanetRepository;
 import com.example.jpatask.planet.repository.PlanetTypeRepository;
 import com.example.jpatask.reservation.repository.ReservationRepository;
@@ -42,6 +43,13 @@ public class JpaTaskApplication {
             customers.add(new Customer("David", "Palmer", "email"));
             customers.add(new Customer("Michelle", "Dessler", "email"));
             customerRepository.saveAll(customers);
+
+            final List<PlanetType> planetTypes = new ArrayList<>();
+            planetTypes.add(new PlanetType("Terrestrial planets"));
+            planetTypes.add(new PlanetType("Jovian planets"));
+            planetTypes.add(new PlanetType("Gas giants"));
+            planetTypes.add(new PlanetType("Ice giants"));
+            planetTypes.add(new PlanetType("Dwarf planets"));
 
             final List<Spaceship> spaceships = new ArrayList<>();
             spaceships.add(new Spaceship("Millennium falcon", 9001, 10));
