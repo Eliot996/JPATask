@@ -2,6 +2,7 @@ package com.example.jpatask;
 
 import com.example.jpatask.customer.models.Customer;
 import com.example.jpatask.customer.repository.CustomerRepository;
+import com.example.jpatask.planet.models.Planet;
 import com.example.jpatask.planet.models.PlanetType;
 import com.example.jpatask.planet.repository.PlanetRepository;
 import com.example.jpatask.planet.repository.PlanetTypeRepository;
@@ -14,6 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
@@ -50,6 +52,10 @@ public class JpaTaskApplication {
             planetTypes.add(new PlanetType("Gas giants"));
             planetTypes.add(new PlanetType("Ice giants"));
             planetTypes.add(new PlanetType("Dwarf planets"));
+
+            final List<Planet> planets = new ArrayList<>();
+            planets.add(new Planet("Mercury", 4879, 5429, 3.7, 4.3, 1407.6, 4222.6, 57.9, 46.0, 69.8, 88.0, 47.4, 7.0,
+                                    0.206, 0.034, 167, 0, 0, 0, false, true, Arrays.asList(planetTypes.get(0))));
 
             final List<Spaceship> spaceships = new ArrayList<>();
             spaceships.add(new Spaceship("Millennium falcon", 9001, 10));

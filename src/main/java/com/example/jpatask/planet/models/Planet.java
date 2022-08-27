@@ -23,9 +23,9 @@ public class Planet {
 
     @NotNull
     private String name;
-    private long mass;
+    private double mass;
     private int diameter;
-    private int density;
+    private double density;
     private double gravity;
     private double escapeVelocity;
     private double rotationPeriod;
@@ -48,7 +48,7 @@ public class Planet {
     @ManyToMany(mappedBy = "planets")
     private List<PlanetType> planetTypes = new ArrayList<>();
 
-    public Planet(String name, long mass, int diameter, int density, double gravity,
+    public Planet(String name, long mass, int diameter, double density, double gravity,
                   double escapeVelocity, double rotationPeriod, double lengthOfDay,
                   double distanceFromSun, double perihelion, double aphelion, double orbitalPeriod,
                   double orbitalVelocity, double orbitalInclination, double orbitalEccentricity,
